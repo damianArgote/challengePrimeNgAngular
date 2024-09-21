@@ -1,0 +1,32 @@
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: var(--highlight-bg);
+  color: var(--highlight-text-color);
+  width: 100%;
+  /* z-index: 1100; */
+}
+
+span {
+  font-size: 20px;
+  font-weight: bold;
+  flex-grow: 1;
+}
+
+p{
+  margin-right: 2rem;
+}
+
+button{
+  margin-right: 1rem;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  button{
+    margin-bottom: 1rem;
+  }
+}

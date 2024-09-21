@@ -1,0 +1,138 @@
+<p-toast class="toast"/>
+
+<div class="card" *ngIf="isAdmin; else noAdminTemplate">
+  <p-table
+    #table
+    responsiveLayout="scroll"
+    [value]="todosCopy"
+    [paginator]="true"
+    [rows]="5"
+    [rowsPerPageOptions]="[5, 10, 20]"
+    [globalFilterFields]="['title']"
+  >
+    <ng-template pTemplate="caption">
+      <div class="flex">
+        <p-button
+                severity="success"
+                label="New TODO"
+                icon="pi pi-plus"
+                class="mr-2"
+                (onClick)="openDialog()" />
+
+        <p-iconField iconPosition="left" class="ml-auto">
+          <p-inputIcon>
+            <i class="pi pi-search"></i>
+          </p-inputIcon>
+          <input
+            #textInput
+            pInputText
+            type="text"
+            (input)="table.filterGlobal(textInput.value, 'contains')"
+            placeholder="Search keyword"
+          />
+        </p-iconField>
+      </div>
+    </ng-template>
+
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="id">ID <p-sortIcon field="id"></p-sortIcon></th>
+        <th>Title</th>
+        <th pSortableColumn="completed" style="width:20%">Status <p-sortIcon field="completed" /></th>
+        <th>Actions</th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-todo let-editing="editing">
+      <tr>
+        <td>{{todo.id}}</td>
+        <td>
+          {{todo.title}}
+        </td>
+        <td>
+          <p-tag
+            [ngStyle]="{'cursor': 'pointer'}"
+            [value]="todo.completed | booleanToString:'Done':'Todo'"
+            [severity]="getSeverity(todo.completed)"
+            (click)="onClickStatus(todo)"
+          />
+        </td>
+        <td class="actions">
+          <p-button icon="pi pi-pencil" [rounded]="true" [outlined]="true" severity="warning" (click)="openDialog(todo)" />
+          <p-button icon="pi pi-trash" [rounded]="true" [outlined]="true" severity="danger" (click)="onRemove(todo)" />
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="emptymessage">
+      <tr>
+          <td colspan="5">No result found.</td>
+      </tr>
+    </ng-template>
+
+  </p-table>
+
+  <p-dialog
+        [(visible)]="todoDialog"
+        [style]="{ width: '450px' }"
+        header="TODO Details"
+        [modal]="true"
+        closable="false"
+        styleClass="p-fluid">
+            <ng-template pTemplate="content">
+              <form [formGroup]="todoForm">
+                <div class="flex-column">
+                  <label for="title">Title</label>
+                  <input pInputText id="title" formControlName="title" [value]="todo?.title" />
+                </div>
+              </form>
+            </ng-template>
+
+            <ng-template pTemplate="footer">
+                <p-button
+                    label="Cancel"
+                    icon="pi pi-times"
+                    [text]="true"
+                    (onClick)="hideDialog()" />
+                <p-button
+                    label="Save"
+                    type="submit"
+                    icon="pi pi-check"
+                    [text]="true"
+                    (click)="onSubmit()"/>
+            </ng-template>
+  </p-dialog>
+  <p-confirmDialog [style]="{ width: '450px' }" />
+</div>
+
+<ng-template #noAdminTemplate>
+  <h2>TODO List</h2>
+  <p-pickList
+    [source]="todosCopy | todoFilter:false"
+    [target]="todosCopy | todoFilter:true"
+    sourceHeader="To Do"
+    targetHeader="Done"
+    responsive="true"
+    showTargetControls="false"
+    showSourceControls="false"
+  >
+  <ng-template let-todo pTemplate="item">
+    <div class="todo-item">
+      {{ todo.title }}
+      <p-tag
+        [ngStyle]="{'cursor': 'pointer'}"
+        [value]="todo.completed | booleanToString:'Done':'Todo'"
+        [severity]="getSeverity(todo.completed)"
+        (click)="onClickStatus(todo)"
+      />
+    </div>
+  </ng-template>
+  </p-pickList>
+</ng-template>
+
+<p-progressSpinner
+ariaLabel="loading"
+styleClass="w-4rem h-4rem"
+strokeWidth="2"
+*ngIf="isLoading"
+class="spinner" />

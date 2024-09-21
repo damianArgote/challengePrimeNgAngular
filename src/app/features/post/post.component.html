@@ -1,0 +1,113 @@
+<p-toast class="toast" />
+<p-toolbar>
+  <div class="p-toolbar-group-start">
+    <button
+      pButton
+      *ngIf="isAdmin"
+      icon="pi pi-plus"
+      class="p-button-success"
+      (click)="openDialog()"
+    ></button>
+  </div>
+  <p-iconField iconPosition="left" class="ml-auto">
+    <p-inputIcon>
+      <i class="pi pi-search"></i>
+    </p-inputIcon>
+    <input #textInput pInputText type="text" placeholder="Search keyword" (input)="filterInput(textInput.value)" />
+  </p-iconField>
+</p-toolbar>
+
+<div class="card">
+  <p-accordion [activeIndex]="0">
+    <p-accordionTab *ngFor="let post of posts">
+      <ng-template pTemplate="header">
+        <!-- Título del post -->
+        <span class="post-title">Title: {{ post.title }}</span>
+
+        <!-- Botones de acción en el header -->
+        <div class="actions">
+          <p-button
+            icon="pi pi-pencil"
+            *ngIf="isAdmin"
+            [rounded]="true"
+            [outlined]="true"
+            severity="warning"
+            (click)="openDialog(post)"
+          />
+          <p-button
+            icon="pi pi-trash"
+            *ngIf="isAdmin"
+            [rounded]="true"
+            [outlined]="true"
+            severity="danger"
+            (click)="onRemove(post)"
+          />
+        </div>
+      </ng-template>
+
+      <p class="m-0">
+        {{ post.body }}
+      </p>
+    </p-accordionTab>
+  </p-accordion>
+
+</div>
+
+<p-dialog
+  [(visible)]="postDialog"
+  [style]="{ width: '40rem' }"
+  header="POST Details"
+  [modal]="true"
+  closable="false"
+  styleClass="p-fluid"
+>
+  <ng-template pTemplate="content">
+    <form [formGroup]="postForm">
+      <div class="flex-column">
+        <label for="title">Title</label>
+        <input
+          pInputText
+          id="title"
+          formControlName="title"
+          [value]="post?.title"
+        />
+      </div>
+      <div class="flex-column">
+        <label for="body">Content</label>
+          <textarea
+            variant="filled"
+            rows="5"
+            cols="30"
+            pInputTextarea
+            formControlName="body"
+          >
+          </textarea>
+      </div>
+    </form>
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <p-button
+      label="Cancel"
+      icon="pi pi-times"
+      [text]="true"
+      (onClick)="hideDialog()"
+    />
+    <p-button
+      label="Save"
+      type="submit"
+      icon="pi pi-check"
+      [text]="true"
+      (click)="onSubmit()"
+    />
+  </ng-template>
+</p-dialog>
+<p-confirmDialog [style]="{ width: '450px' }" />
+
+<p-progressSpinner
+  ariaLabel="loading"
+  styleClass="w-4rem h-4rem"
+  strokeWidth="2"
+  *ngIf="isLoading"
+  class="spinner"
+/>

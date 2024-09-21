@@ -1,0 +1,55 @@
+.mr-2{
+  margin-right: 2rem;
+}
+.flex{
+  display: flex;
+  justify-content: space-between;
+}
+
+.flex-column{
+  display: flex;
+  flex-direction: column;
+}
+
+.toast{
+  z-index: -9999;
+}
+
+.actions{
+  display: flex;
+  justify-content: space-around
+}
+
+.spinner{
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  z-index: 9999;
+}
+
+.todo-item{
+  display: flex;
+  justify-content: space-between;
+}
+
+.card{
+  display: flex;
+  justify-content: center;
+}
+
+h2{
+  text-align: center;
+}
+
+@media (max-width: 768px){
+  .card{
+    display: block;
+  }
+}
+
+::ng-deep .p-picklist-buttons > button:nth-child(1),
+::ng-deep .p-picklist-buttons > button:nth-child(2),
+::ng-deep .p-picklist-buttons > button:nth-child(3),
+::ng-deep .p-picklist-buttons > button:nth-child(4) {
+    display: none;
+  }

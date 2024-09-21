@@ -1,0 +1,16 @@
+<div class="topbar">
+  <span>ELDAR's Challenge</span>
+
+  <p *ngIf="userAuth">
+    Username: {{userAuth.username}}
+    Role: <strong>{{userAuth.role}}</strong>
+  </p>
+  <div>
+
+    <button pButton pRipple [icon]="!isDarkMode ? 'pi pi-sun' : 'pi pi-moon'" class="p-button-primary" (click)="toggleDarkMode()"></button>
+
+    <button *ngIf="userAuth" pButton pRipple icon="pi pi-power-off" class="p-button-danger" (click)="logOut()"></button>
+  </div>
+
+</div>
+

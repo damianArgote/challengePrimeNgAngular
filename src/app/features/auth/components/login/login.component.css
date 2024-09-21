@@ -1,0 +1,64 @@
+/* styles.css */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 10px;
+}
+
+input{
+  width: 100%;
+}
+
+.password-container {
+  position: relative;
+}
+
+.password-container input {
+  width: 100%;
+  padding-right: 40px; /* Espacio para el ícono */
+}
+
+.password-container i {
+  position: absolute;
+  right: 10px;
+  top: 60%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+
+/* Para el p-card que contiene el formulario de login */
+.login-card {
+  width: 100%;
+  max-width: 400px; /* Máximo ancho para pantallas grandes */
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.p-field {
+  margin-bottom: 15px;
+}
+
+.error-message {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Media queries para pantallas más pequeñas */
+@media (max-width: 600px) {
+  .login-card {
+    max-width: 90%; /* Reduce el ancho máximo en pantallas pequeñas */
+  }
+}
+
+@media (max-width: 400px) {
+  .login-card {
+    padding: 15px; /* Reduce el padding en pantallas más pequeñas */
+  }
+
+  h2 {
+    font-size: 2rem; /* Ajusta el tamaño de fuente del título en pantallas pequeñas */
+  }
+}

@@ -1,0 +1,30 @@
+<p-sidebar
+  *ngIf="sidebarVisible"
+  [(visible)]="sidebarVisible"
+  baseZIndex="1000"
+  position="left"
+>
+  <h3>Menu</h3>
+  <p-menu [model]="items" />
+</p-sidebar>
+
+<div
+  [ngClass]="{
+    'content-with-sidebar': sidebarVisible,
+    'content-without-sidebar': !sidebarVisible
+  }"
+>
+  <app-topbar></app-topbar>
+  <p-button
+    (onClick)="sidebarVisible = !sidebarVisible"
+    [icon]="!sidebarVisible ? 'pi pi-arrow-right' : 'pi pi-arrow-left'"
+    class="btn-desktop"
+  />
+  <p-button
+    (onClick)="sidebarVisible = !sidebarVisible"
+    icon="pi pi-bars"
+    [rounded]="true"
+    class="btn-mobile"
+  />
+  <router-outlet></router-outlet>
+</div>

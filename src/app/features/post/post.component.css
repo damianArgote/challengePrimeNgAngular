@@ -1,0 +1,53 @@
+.card{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-around;
+  margin: 1rem auto;
+}
+
+p-toolbar{
+  margin: 1rem auto;
+}
+
+::ng-deep .header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.post-title {
+  flex-grow: 1; /* El título ocupará el espacio disponible */
+  margin-right: 1rem; /* Espacio entre el título y las acciones */
+}
+
+.actions {
+  display: flex;
+  gap: 0.5rem; /* Espacio entre los botones */
+  align-items: center; /* Alinear los botones verticalmente */
+}
+
+::ng-deep .actions .p-button {
+  padding: 0.4rem; /* Ajusta el tamaño del botón */
+  width: 2.5rem; /* Tamaño consistente para los botones redondeados */
+  height: 2.5rem;
+}
+
+.toast{
+  z-index: -9999;
+}
+
+.flex-column{
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 2rem;
+}
+
+.spinner{
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  z-index: 9999;
+}
+

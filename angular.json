@@ -35,7 +35,18 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/primeicons/primeicons.css",
+              {
+                "input": "src/theme-lara-light-blue.css",
+                "bundleName": "light-blue",
+                "inject": false
+              },
+              {
+                "input": "src/theme-lara-dark-blue.css",
+                "bundleName": "dark-blue",
+                "inject": false
+              }
             ],
             "scripts": []
           },

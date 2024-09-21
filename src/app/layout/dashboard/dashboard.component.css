@@ -1,0 +1,54 @@
+
+p-sidebar h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+}
+
+::ng-deep .p-menuitem {
+  font-size: 1.2rem;
+  width: 100%; /* Los items ocuparán todo el ancho */
+  display: block; /* Asegúrate de que se comporten como bloques completos */
+  padding: 1rem; /* Ajusta el padding según lo que prefieras */
+  box-sizing: border-box;
+}
+
+::ng-deep .p-menuitem:hover {
+  font-weight: bold;
+}
+::ng-deep .p-sidebar .p-menu {
+  width: 100%;
+}
+
+.content-with-sidebar {
+  margin-left: 310px; /* Ancho del sidebar */
+  transition: margin-left 0.3s ease; /* Efecto de transición */
+}
+
+.content-without-sidebar {
+  margin-left: 0;
+  transition: margin-left 0.3s ease; /* Efecto de transición */
+}
+.btn-desktop{
+  display: block;
+  z-index: 999;
+}
+.btn-mobile{
+  display: none;
+}
+
+/* Media queries para pantallas más pequeñas */
+@media (max-width: 768px) {
+  .btn-mobile{
+    display: block;
+    position: fixed;
+    right: 10%;
+    bottom: 10%;
+    z-index: 999;
+  }
+
+  .btn-desktop{
+    display: none;
+  }
+}
