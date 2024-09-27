@@ -20,6 +20,11 @@ export class DashboardComponent {
       label:'TODO List',
       routerLink:['/dashboard/todo'],
       icon:'pi pi-list-check'
+    },
+    {
+      label:'Formly Demo',
+      routerLink:['/dashboard/formly-demo'],
+      icon:'pi pi-pen-to-square'
     }
   ]
 

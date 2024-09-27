@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { FormlyDemoModule } from '../features/formly-demo/formly-demo.module';
 
 
 const routes: Routes=[
@@ -16,6 +17,10 @@ const routes: Routes=[
         path: 'post',
         loadChildren: () => import('../features/post/post.module').then(m => m.PostModule)
       },
+      {
+        path:'formly-demo',
+        loadChildren:() => import('../features/formly-demo/formly-demo.module').then(m => m.FormlyDemoModule)
+      }
     ]
   },
 

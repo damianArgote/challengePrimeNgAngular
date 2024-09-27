@@ -10,6 +10,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { HttpClientModule } from '@angular/common/http';
 import { appReducers } from './store/app.reducer';
 import { EffectsArray } from './store/effects/index';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { EffectsArray } from './store/effects/index';
     DragDropModule,
     StoreModule.forRoot(appReducers),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
-    EffectsModule.forRoot(EffectsArray)
+    EffectsModule.forRoot(EffectsArray),
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
